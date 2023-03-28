@@ -1,8 +1,12 @@
 {
-  "name": "my-qwik-basic-starter",
-  "description": "App with Routing built-in (recommended)",
+  "name": "qwik-city-movies",
+  "description": "Qwik City movies app",
   "engines": {
     "node": ">=15.0.0"
+  },
+  "author": {
+    "name": "Ronald Ruzicka",
+    "email": "ruzicka.ronald@gmail.com"
   },
   "private": true,
   "scripts": {
