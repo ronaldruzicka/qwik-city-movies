@@ -6,11 +6,12 @@
   },
   "private": true,
   "scripts": {
+    "build": "qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.server": "vite build -c adapters/vercel-edge/vite.config.ts",
     "build.types": "tsc --incremental --noEmit",
-    "build": "qwik build",
-    "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
+    "deploy": "vercel deploy",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
     "dev": "vite --mode ssr",
     "fmt.check": "prettier --check .",
@@ -52,6 +53,7 @@
     "tailwindcss": "^3.2.7",
     "typescript": "5.0.2",
     "undici": "5.21.0",
+    "vercel": "^28.18.2",
     "vite": "4.2.1",
     "vite-tsconfig-paths": "3.5.0"
   }
