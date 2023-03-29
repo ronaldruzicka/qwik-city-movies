@@ -210,7 +210,7 @@ module.exports = {
       // Enforce casing for variables
       {
         selector: 'variable',
-        format: ['UPPER_CASE', 'snake_case'],
+        format: ['PascalCase', 'UPPER_CASE', 'snake_case'],
         // Allow "_" at the beginning of the variable name, e.g. for private or re-assigned variables, because of "no-param-reassign" rule
         leadingUnderscore: 'allow',
       },

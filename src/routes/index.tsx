@@ -25,7 +25,9 @@ export default component$(() => {
       <Resource
         value={resource}
         onPending={() => <div>Loading...</div>}
-        onRejected={() => <div>Failed to person data</div>}
+        onRejected={(reason) => {
+          return <div>Error occurred {reason?.toString()}</div>;
+        }}
         onResolved={(resource) => {
           return (
             <div>
