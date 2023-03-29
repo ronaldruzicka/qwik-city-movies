@@ -4,6 +4,8 @@ import type { Response, UpcomingMovie } from '~/api/types';
 import { component$, Resource, useResource$ } from '@builder.io/qwik';
 
 import { api_client } from '~/api/api-client';
+import { Layout } from '~/components/layout';
+import { Sidebar } from '~/components/sidebar';
 
 export default component$(() => {
   const resource = useResource$<Response<UpcomingMovie>>(async ({ cleanup }) => {
@@ -21,7 +23,8 @@ export default component$(() => {
   });
 
   return (
-    <>
+    <Layout>
+      <Sidebar />
       <Resource
         value={resource}
         onPending={() => <div>Loading...</div>}
@@ -38,7 +41,7 @@ export default component$(() => {
           );
         }}
       />
-    </>
+    </Layout>
   );
 });
 

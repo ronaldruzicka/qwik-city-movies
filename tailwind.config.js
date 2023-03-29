@@ -2,7 +2,22 @@
 module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        layout: '60px 1fr',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+
+  daisyui: {
+    styled: true,
+    themes: ['dracula'],
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: '',
+    darkTheme: 'dark',
+  },
 };
