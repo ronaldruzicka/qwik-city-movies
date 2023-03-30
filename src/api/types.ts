@@ -14,6 +14,21 @@ type Dates = {
   minimum?: string;
 };
 
+type ImageConfig = {
+  backdrop_sizes: string[];
+  base_url: string;
+  logo_sizes: string[];
+  poster_sizes: string[];
+  profile_sizes: string[];
+  secure_base_url: string;
+  still_sizes: string[];
+};
+
+export type Config = {
+  change_keys: string[];
+  images: ImageConfig;
+};
+
 export type UpcomingMovie = {
   adult?: boolean;
   backdrop_path?: Maybe<string>;

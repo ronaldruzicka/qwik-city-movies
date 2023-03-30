@@ -2,11 +2,7 @@
 module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
-    extend: {
-      gridTemplateColumns: {
-        layout: '60px 1fr',
-      },
-    },
+    extend: {},
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
 

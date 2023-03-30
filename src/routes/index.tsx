@@ -1,47 +1,28 @@
 import type { DocumentHead } from '@builder.io/qwik-city';
-import type { Response, UpcomingMovie } from '~/api/types';
+import type { Config } from '~/api/types';
 
-import { component$, Resource, useResource$ } from '@builder.io/qwik';
+import { component$, useContextProvider } from '@builder.io/qwik';
+import { routeLoader$ } from '@builder.io/qwik-city';
 
 import { api_client } from '~/api/api-client';
-import { Layout } from '~/components/layout';
-import { Sidebar } from '~/components/sidebar';
+import { ConfigContext } from '~/context/config-context';
+import { UpcomingMovies } from '~/features/upcoming-movies/upcoming-movies';
+
+export const use_get_config = routeLoader$(async () => {
+  const response = await api_client.get<Config>('configuration');
+
+  return response.data;
+});
 
 export default component$(() => {
-  const resource = useResource$<Response<UpcomingMovie>>(async ({ cleanup }) => {
-    const abort_controller = new AbortController();
+  const config = use_get_config();
 
-    cleanup(() => abort_controller.abort('cleanup'));
-
-    const response = await api_client.get('movie/upcoming', {
-      signal: abort_controller.signal,
-    });
-
-    const data = await response.data;
-
-    return data;
-  });
+  useContextProvider(ConfigContext, config.value);
 
   return (
-    <Layout>
-      <Sidebar />
-      <Resource
-        value={resource}
-        onPending={() => <div>Loading...</div>}
-        onRejected={(reason) => {
-          return <div>Error occurred {reason?.toString()}</div>;
-        }}
-        onResolved={(resource) => {
-          return (
-            <div>
-              {resource.results?.map((movie) => (
-                <div key={movie.id}>{movie.original_title}</div>
-              ))}
-            </div>
-          );
-        }}
-      />
-    </Layout>
+    <>
+      <UpcomingMovies />
+    </>
   );
 });
 
