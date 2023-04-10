@@ -4,7 +4,7 @@ import { Sidebar } from '~/components/sidebar';
 
 export default component$(() => {
   return (
-    <div class="flex h-full">
+    <div class="flex items-start h-full">
       <Sidebar />
       <Slot />
     </div>

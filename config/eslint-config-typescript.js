@@ -218,7 +218,7 @@ module.exports = {
       // Use PascalCase for React components
       {
         selector: 'function',
-        format: ['camelCase', 'PascalCase'],
+        format: ['snake_case', 'PascalCase'],
       },
       // class, interface, typeAlias, enum, typeParameter
       {

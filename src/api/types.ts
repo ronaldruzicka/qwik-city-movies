@@ -1,6 +1,10 @@
 export type Maybe<T> = T | null;
 export type ID = number;
 
+export type Prettify<T> = {
+  [K in keyof T]: T[K];
+};
+
 export type Response<TData> = {
   dates?: Dates;
   page?: number;
@@ -29,7 +33,12 @@ export type Config = {
   images: ImageConfig;
 };
 
-export type UpcomingMovie = {
+type Genre = {
+  id?: number;
+  name?: string;
+};
+
+export type Movie = {
   adult?: boolean;
   backdrop_path?: Maybe<string>;
   genre_ids?: number[];
@@ -45,3 +54,20 @@ export type UpcomingMovie = {
   vote_average?: number;
   vote_count?: number;
 };
+
+export type LatestMovie = Prettify<
+  Movie & {
+    belongs_to_collection?: null;
+    budget: number;
+    genres?: Genre[];
+    homepage?: string;
+    imdb_id?: ID;
+    production_companies: object[];
+    production_countries: object[];
+    revenue?: number;
+    runtime?: number;
+    spoken_languages?: object[];
+    status?: string;
+    tagline?: string;
+  }
+>;
