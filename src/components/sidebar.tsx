@@ -8,7 +8,7 @@ import { TV } from '~/components/icons/tv';
 
 export const Sidebar = component$(() => {
   return (
-    <nav>
+    <nav class="h-full flex-none">
       <ul class="flex flex-col gap-y-5 h-full p-5 bg-base-300">
         <li>
           <Link class="btn btn-circle">

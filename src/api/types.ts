@@ -1,3 +1,5 @@
+import type { QwikJSX } from '@builder.io/qwik';
+
 export type Maybe<T> = T | null;
 export type ID = number;
 
@@ -5,7 +7,9 @@ export type Prettify<T> = {
   [K in keyof T]: T[K];
 };
 
-export type Response<TData> = {
+export type ElementType = keyof QwikJSX.IntrinsicElements;
+
+export type PaginatedResponse<TData> = {
   dates?: Dates;
   page?: number;
   results?: TData[];
@@ -42,7 +46,7 @@ export type Movie = {
   adult?: boolean;
   backdrop_path?: Maybe<string>;
   genre_ids?: number[];
-  id?: ID;
+  id: ID;
   original_language?: string;
   original_title?: string;
   overview?: string;
@@ -54,6 +58,40 @@ export type Movie = {
   vote_average?: number;
   vote_count?: number;
 };
+
+type ProductionCompany = {
+  id: ID;
+  logo_path?: string;
+  name?: string;
+  origin_country?: string;
+};
+
+type ProductionCountry = {
+  iso_3166_1?: string;
+  name?: string;
+};
+
+type SpokenLanguages = {
+  iso_639_1?: string;
+  name?: string;
+};
+
+export type MovieDetails = Prettify<
+  Movie & {
+    belongs_to_collection?: Maybe<Record<string, unknown>>;
+    budget?: number;
+    genres?: Genre[];
+    homepage?: string;
+    imdb_id?: string;
+    production_companies?: ProductionCompany[];
+    production_countries?: ProductionCountry[];
+    revenue?: number;
+    runtime?: number;
+    spoken_languages?: SpokenLanguages[];
+    status?: string;
+    tagline?: string;
+  }
+>;
 
 export type LatestMovie = Prettify<
   Movie & {

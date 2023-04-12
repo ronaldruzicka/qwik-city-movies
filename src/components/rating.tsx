@@ -1,27 +1,39 @@
+import { get_rating } from '~/helpers/get_rating';
+
 type Props = {
-  rating: number;
+  name: string;
+  read_only?: boolean;
+  value: number | undefined;
 };
 
-export function Rating({ rating }: Props) {
-  if (rating === undefined) {
+export function Rating({ name, read_only, value }: Props) {
+  if (value === undefined) {
     return null;
   }
 
   return (
-    <div class="rating">
-      {Array.from({ length: 5 }, (_, index) => {
-        const checked = rating === index - 1;
-
-        console.log('rating', rating);
-        console.log('checked', checked);
+    <div class="rating rating-md rating-half">
+      <input
+        class="rating-hidden disabled:cursor-default"
+        disabled={read_only}
+        name={name}
+        type="radio"
+        value="0"
+      />
+      {Array.from({ length: 10 }, (_, index) => {
+        const half_class = index % 2 === 0 ? 'mask-half-1' : 'mask-half-2';
+        const rating = get_rating(value);
+        const radio_value = index + 1;
 
         return (
           <input
+            checked={radio_value === rating}
+            class={`mask mask-star-2 bg-orange-400 ${half_class} disabled:cursor-default`}
+            disabled={read_only}
             key={index}
+            name={name}
             type="radio"
-            name={`rating-${index}`}
-            class="mask mask-star"
-            checked={checked}
+            value={radio_value}
           />
         );
       })}
