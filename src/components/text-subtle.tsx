@@ -1,19 +1,18 @@
-import type { QwikJSX } from '@builder.io/qwik';
+import type { QwikIntrinsicElements } from '@builder.io/qwik';
 import type { ElementType } from '~/api/types';
 
 import { component$, Slot } from '@builder.io/qwik';
 
-type Props<TTag extends ElementType> = QwikJSX.IntrinsicElements[TTag] & {
-  as?: TTag;
+type Props<TElement extends ElementType> = QwikIntrinsicElements[TElement] & {
+  as?: TElement;
 };
 
 export const TextSubtle = component$(
-  <TComponent extends ElementType>({ as }: Props<TComponent>) => {
-    const Component = as ?? 'p';
+  <TElement extends ElementType>({ as, htmlAttributes }: Props<TElement>) => {
+    const Component = (as ?? 'p') as string;
 
     return (
-      // @ts-ignore - TODO: how to make this work? There is no autocomplete
-      <Component class="text-sm text-white/60">
+      <Component class="text-sm text-white/60" {...htmlAttributes}>
         <Slot />
       </Component>
     );

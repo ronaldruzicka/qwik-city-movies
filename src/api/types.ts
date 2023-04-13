@@ -1,4 +1,4 @@
-import type { QwikJSX } from '@builder.io/qwik';
+import type { QwikIntrinsicElements } from '@builder.io/qwik';
 
 export type Maybe<T> = T | null;
 export type ID = number;
@@ -7,7 +7,7 @@ export type Prettify<T> = {
   [K in keyof T]: T[K];
 };
 
-export type ElementType = keyof QwikJSX.IntrinsicElements;
+export type ElementType = keyof QwikIntrinsicElements;
 
 export type PaginatedResponse<TData> = {
   dates?: Dates;
