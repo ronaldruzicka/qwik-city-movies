@@ -19,7 +19,7 @@ export const Hero = component$<Props>(({ data }) => {
 
   return (
     <div class="relative flex-1">
-      <div class="relative before:block before:absolute before:inset-0 before:bg-gradient-to-r from-base-100">
+      <div class="relative before:block before:absolute before:inset-0 before:bg-gradient-to-r before:mix-blend-multiply from-base-100">
         <img class="w-full" src={`${base_url}${backdrop_image_size}${data.backdrop_path}`} />
       </div>
       <article class="absolute bottom-0 left-0 flex flex-col justify-end w-1/3 p-7 ">
