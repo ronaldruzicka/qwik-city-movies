@@ -15,7 +15,7 @@ export function Rating({ name, read_only, value }: Props) {
 
   return (
     <div class="tooltip tooltip-accent" data-tip={`${rating}/10`}>
-      <div class="rating rating-md rating-half">
+      <div class="rating rating-md rating-half -ml-2">
         <input
           class="rating-hidden disabled:cursor-default"
           disabled={read_only}

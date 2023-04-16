@@ -92,20 +92,3 @@ export type MovieDetails = Prettify<
     tagline?: string;
   }
 >;
-
-export type LatestMovie = Prettify<
-  Movie & {
-    belongs_to_collection?: null;
-    budget: number;
-    genres?: Genre[];
-    homepage?: string;
-    imdb_id?: ID;
-    production_companies: object[];
-    production_countries: object[];
-    revenue?: number;
-    runtime?: number;
-    spoken_languages?: object[];
-    status?: string;
-    tagline?: string;
-  }
->;
