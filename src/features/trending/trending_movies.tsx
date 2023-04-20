@@ -1,6 +1,7 @@
 import type { Movie } from '~/api/types';
 
 import { component$, useContext } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 
 import { ConfigContext } from '~/context/config-context';
 
@@ -17,7 +18,7 @@ export const TrendingMovies = component$<Props>(({ data }) => {
       <div class="carousel gap-x-4">
         {data.map((movie) => {
           return (
-            <div key={movie.id} class="carousel-item flex-col">
+            <Link href={`/movie/${movie.id}`} key={movie.id} class="carousel-item flex-col">
               <img
                 src={`${config.images.base_url}${config.images.poster_sizes[3]}${movie.poster_path}`}
                 height={556}
@@ -25,7 +26,7 @@ export const TrendingMovies = component$<Props>(({ data }) => {
                 alt={movie.title}
               />
               <h3 class="text-lg py-2">{movie.title}</h3>
-            </div>
+            </Link>
           );
         })}
       </div>

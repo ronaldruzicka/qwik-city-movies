@@ -1,5 +1,5 @@
 import type { DocumentHead } from '@builder.io/qwik-city';
-import type { Config, Movie, MovieDetails, PaginatedResponse } from '~/api/types';
+import type { Movie, MovieDetails } from '~/api/types';
 
 import { component$, useContextProvider } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
