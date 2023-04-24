@@ -92,3 +92,21 @@ export type MovieDetails = Prettify<
     tagline?: string;
   }
 >;
+
+export type TvShow = {
+  adult: boolean;
+  backdrop_path: string;
+  first_air_date: string;
+  genre_ids: number[];
+  id: ID;
+  media_type: string;
+  name: string;
+  origin_country: ['US'];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+};

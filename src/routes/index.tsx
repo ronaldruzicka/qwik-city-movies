@@ -5,10 +5,15 @@ import { component$, useContextProvider } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
 
 import { tmdb_client } from '~/api/api-client';
-import { get_config, get_now_playing_movie, get_trending_movies } from '~/api/services';
+import {
+  get_config,
+  get_now_playing_movie,
+  get_trending_movies,
+  get_trending_tv_shows,
+} from '~/api/services';
 import { ConfigContext } from '~/context/config-context';
 import { Hero } from '~/features/hero/hero';
-import { TrendingMovies } from '~/features/trending/trending_movies';
+import { TrendingCarousel } from '~/features/trending/trending_carousel';
 
 const with_poster = (movie: Movie) => movie.backdrop_path !== null;
 const get_random_number = (multiplier: number) => Math.floor(Math.random() * multiplier);
@@ -39,10 +44,17 @@ export const use_get_trending_movies = routeLoader$(async () => {
   return response.data;
 });
 
+export const use_get_trending_tv_shows = routeLoader$(async () => {
+  const response = await get_trending_tv_shows();
+
+  return response.data;
+});
+
 export default component$(() => {
   const config = use_get_config();
   const now_playing_movie = use_get_now_playing_movie();
   const trending_movies = use_get_trending_movies();
+  const trending_tv_shows = use_get_trending_tv_shows();
 
   useContextProvider(ConfigContext, config.value);
 
@@ -51,7 +63,12 @@ export default component$(() => {
       {now_playing_movie.value && <Hero data={now_playing_movie.value} />}
       {trending_movies.value.results && (
         <div class="mt-12">
-          <TrendingMovies data={trending_movies.value.results} />
+          <TrendingCarousel data={trending_movies.value.results} mediaType="movie" />
+        </div>
+      )}
+      {trending_tv_shows.value.results && (
+        <div class="mt-12">
+          <TrendingCarousel data={trending_tv_shows.value.results} mediaType="tv" />
         </div>
       )}
     </main>
