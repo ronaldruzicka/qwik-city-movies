@@ -59,7 +59,7 @@ export default component$(() => {
   useContextProvider(ConfigContext, config.value);
 
   return (
-    <main class="flex-1">
+    <main class="flex-1 pb-36">
       {now_playing_movie.value && <Hero data={now_playing_movie.value} />}
       {trending_movies.value.results && (
         <div class="mt-12">

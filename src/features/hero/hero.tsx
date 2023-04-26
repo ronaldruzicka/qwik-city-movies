@@ -16,13 +16,21 @@ export const Hero = component$<Props>(({ data }) => {
 
   const { backdrop_sizes, base_url } = config.images;
   const backdrop_image_size = backdrop_sizes.at(2);
+  const image_width = backdrop_image_size?.replace(/\w/, '');
 
   return (
-    <div class="relative flex-1">
-      <div class="relative before:block before:absolute before:inset-0 before:bg-gradient-to-r before:mix-blend-multiply from-base-100">
-        <img class="w-full" src={`${base_url}${backdrop_image_size}${data.backdrop_path}`} />
+    <div class="relative">
+      <div class="relative aspect-[25/9] ">
+        <div class="absolute bottom-0 right-0 top-0 lg:left-1/3 [mask-image:linear-gradient(to_left,#000,transparent)]">
+          <img
+            class="w-full"
+            src={`${base_url}${backdrop_image_size}${data.backdrop_path}`}
+            width={image_width}
+          />
+        </div>
       </div>
-      <article class="absolute bottom-0 left-0 flex flex-col justify-end w-1/3 p-7 ">
+
+      <article class="absolute bottom-0 left-0 flex flex-col justify-end w-5/12 p-10 bg-gradient-to-r from-black/20">
         <h1 class="mb-3 text-5xl font-bold">{data.title}</h1>
         <div class="flex gap-x-2 items-center mb-5">
           <Rating value={data.vote_average} name={`rating-${data.id}`} read_only />
