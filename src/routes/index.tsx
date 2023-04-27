@@ -2,7 +2,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import type { Movie, MovieDetails } from '~/api/types';
 
 import { component$, useContextProvider } from '@builder.io/qwik';
-import { routeLoader$ } from '@builder.io/qwik-city';
+import { Link, routeLoader$ } from '@builder.io/qwik-city';
 
 import { tmdb_client } from '~/api/api-client';
 import {
@@ -59,8 +59,12 @@ export default component$(() => {
   useContextProvider(ConfigContext, config.value);
 
   return (
-    <main class="flex-1 pb-36">
-      {now_playing_movie.value && <Hero data={now_playing_movie.value} />}
+    <>
+      {now_playing_movie.value && (
+        <Link href={`movie/${now_playing_movie.value.id}`}>
+          <Hero data={now_playing_movie.value} />
+        </Link>
+      )}
       {trending_movies.value.results && (
         <div class="mt-12">
           <TrendingCarousel data={trending_movies.value.results} mediaType="movie" />
@@ -71,7 +75,7 @@ export default component$(() => {
           <TrendingCarousel data={trending_tv_shows.value.results} mediaType="tv" />
         </div>
       )}
-    </main>
+    </>
   );
 });
 

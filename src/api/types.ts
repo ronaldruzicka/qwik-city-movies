@@ -94,14 +94,13 @@ export type MovieDetails = Prettify<
 >;
 
 export type TvShow = {
-  adult: boolean;
   backdrop_path: string;
   first_air_date: string;
   genre_ids: number[];
   id: ID;
-  media_type: string;
+  media_type: 'tv';
   name: string;
-  origin_country: ['US'];
+  origin_country: string[];
   original_language: string;
   original_name: string;
   overview: string;
@@ -110,3 +109,5 @@ export type TvShow = {
   vote_average: number;
   vote_count: number;
 };
+
+export type ProductionMedia = Movie | TvShow;

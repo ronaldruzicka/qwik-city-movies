@@ -11,22 +11,22 @@ export const Sidebar = component$(() => {
     <nav class="h-full flex-none">
       <ul class="flex flex-col gap-y-5 h-full p-5 bg-base-300">
         <li>
-          <Link class="btn btn-circle">
+          <Link href="/" class="btn btn-circle">
             <Home />
           </Link>
         </li>
         <li>
-          <Link class="btn btn-circle">
+          <Link href="/movie" class="btn btn-circle">
             <Movie />
           </Link>
         </li>
         <li>
-          <Link class="btn btn-circle">
+          <Link href="/tv-show" class="btn btn-circle">
             <TV />
           </Link>
         </li>
         <li>
-          <Link class="btn btn-circle">
+          <Link href="/search" class="btn btn-circle">
             <Search />
           </Link>
         </li>

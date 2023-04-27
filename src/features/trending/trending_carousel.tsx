@@ -1,9 +1,9 @@
 import type { Movie, TvShow } from '~/api/types';
 
-import { component$, useContext } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
 
-import { ConfigContext } from '~/context/config-context';
+import { get_poster } from '~/api/image-service';
 
 function is_movie(media: Movie | TvShow): media is Movie {
   return 'title' in media;
@@ -22,8 +22,6 @@ type TvShowProps = {
 type Props = MovieProps | TvShowProps;
 
 export const TrendingCarousel = component$<Props>(({ data, mediaType }) => {
-  const config = useContext(ConfigContext);
-
   return (
     <div class="pl-7">
       <h2 class="text-2xl mb-5">Trending {mediaType === 'movie' ? 'movies' : 'TV Shows'}</h2>
@@ -34,7 +32,7 @@ export const TrendingCarousel = component$<Props>(({ data, mediaType }) => {
           return (
             <Link href={`/${mediaType}/${media.id}`} key={media.id} class="carousel-item flex-col">
               <img
-                src={`${config.images.base_url}${config.images.poster_sizes[3]}${media.poster_path}`}
+                src={get_poster({ media, size: 342 })}
                 height={556}
                 width={370}
                 alt={media_title}

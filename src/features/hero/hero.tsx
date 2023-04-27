@@ -1,10 +1,10 @@
 import type { MovieDetails } from '~/api/types';
 
-import { component$, useContext } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik';
 
+import { get_backdrop } from '~/api/image-service';
 import { Rating } from '~/components/rating';
 import { TextSubtle } from '~/components/text-subtle';
-import { ConfigContext } from '~/context/config-context';
 import { get_runtime } from '~/helpers/get_runtime';
 
 type Props = {
@@ -12,11 +12,7 @@ type Props = {
 };
 
 export const Hero = component$<Props>(({ data }) => {
-  const config = useContext(ConfigContext);
-
-  const { backdrop_sizes, base_url } = config.images;
-  const backdrop_image_size = backdrop_sizes.at(2);
-  const image_width = backdrop_image_size?.replace(/\w/, '');
+  const image_width = 1280;
 
   return (
     <div class="relative">
@@ -24,7 +20,7 @@ export const Hero = component$<Props>(({ data }) => {
         <div class="absolute bottom-0 right-0 top-0 lg:left-1/3 [mask-image:linear-gradient(to_left,#000,transparent)]">
           <img
             class="w-full"
-            src={`${base_url}${backdrop_image_size}${data.backdrop_path}`}
+            src={get_backdrop({ media: data, size: image_width })}
             width={image_width}
           />
         </div>
