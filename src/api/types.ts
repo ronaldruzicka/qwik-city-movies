@@ -76,22 +76,79 @@ type SpokenLanguages = {
   name?: string;
 };
 
-export type MovieDetails = Prettify<
-  Movie & {
-    belongs_to_collection?: Maybe<Record<string, unknown>>;
-    budget?: number;
-    genres?: Genre[];
-    homepage?: string;
-    imdb_id?: string;
-    production_companies?: ProductionCompany[];
-    production_countries?: ProductionCountry[];
-    revenue?: number;
-    runtime?: number;
-    spoken_languages?: SpokenLanguages[];
-    status?: string;
-    tagline?: string;
-  }
->;
+type MovieStatus =
+  | 'Rumored'
+  | 'Planned'
+  | 'In Production'
+  | 'Post Production'
+  | 'Released'
+  | 'Canceled';
+
+type MovieDetailsProps = {
+  belongs_to_collection?: Maybe<Record<string, unknown>>;
+  budget?: number;
+  genres?: Genre[];
+  homepage?: string;
+  imdb_id?: string;
+  production_companies?: ProductionCompany[];
+  production_countries?: ProductionCountry[];
+  revenue?: number;
+  runtime?: number;
+  spoken_languages?: SpokenLanguages[];
+  status?: MovieStatus;
+  tagline?: string;
+};
+
+type PersonMedia = {
+  adult?: boolean;
+  id: number;
+  job?: string;
+  known_for?: ProductionMedia[];
+  media_type?: 'person';
+  name?: string;
+  popularity?: number;
+  profile_path?: string;
+};
+
+type Image = {
+  aspect_ratio?: number;
+  file_path?: string;
+  height?: number;
+  iso_639_1?: string | null;
+  vote_average?: number;
+  vote_count?: number;
+  width?: number;
+};
+
+type Video = {
+  id?: string;
+  iso_3166_1?: string;
+  iso_639_1?: string;
+  key?: string;
+  name?: string;
+  official?: boolean;
+  published_at?: string;
+  site?: string;
+  size?: number;
+  type?: string;
+};
+
+type MovieAddons = {
+  credits?: {
+    cast?: PersonMedia[];
+    crew?: PersonMedia[];
+  };
+  images?: {
+    backdrops?: Image[];
+    logos?: Image[];
+    posters?: Image[];
+  };
+  videos?: {
+    results?: Video[];
+  };
+};
+
+export type MovieDetails = Prettify<Movie & MovieDetailsProps & MovieAddons>;
 
 export type TvShow = {
   backdrop_path: string;

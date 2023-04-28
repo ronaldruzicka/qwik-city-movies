@@ -17,5 +17,10 @@ export const get_trending_tv_shows = async () => {
 };
 
 export const get_movie = async (id: number) => {
-  return tmdb_client.get<MovieDetails>(`/movie/${id}`);
+  return tmdb_client.get<MovieDetails>(`/movie/${id}`, {
+    params: {
+      append_to_response: 'videos,credits,images,release_dates',
+      include_image_language: 'en',
+    },
+  });
 };

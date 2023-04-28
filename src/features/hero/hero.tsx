@@ -5,6 +5,7 @@ import { component$ } from '@builder.io/qwik';
 import { get_backdrop } from '~/api/image-service';
 import { Rating } from '~/components/rating';
 import { TextSubtle } from '~/components/text-subtle';
+import { format_date } from '~/helpers/format_date';
 import { get_runtime } from '~/helpers/get_runtime';
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
 
 export const Hero = component$<Props>(({ data }) => {
   const image_width = 1280;
+  const release_date = format_date(data.release_date, 'short');
 
   return (
     <div class="relative">
@@ -31,9 +33,7 @@ export const Hero = component$<Props>(({ data }) => {
         <div class="flex gap-x-2 items-center mb-5">
           <Rating value={data.vote_average} name={`rating-${data.id}`} read_only />
           <TextSubtle>
-            {data.vote_count} reviews,{' '}
-            {data.release_date && `${new Date(data.release_date).toLocaleDateString()}, `}
-            {get_runtime(data.runtime)}
+            {data.vote_count} reviews, {release_date}, {get_runtime(data.runtime)}
           </TextSubtle>
         </div>
         <p class="text-base">{data.overview}</p>

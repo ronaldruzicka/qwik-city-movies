@@ -4,6 +4,7 @@ specifiers:
   '@builder.io/qwik': 0.103.0
   '@builder.io/qwik-city': 0.103.0
   '@tailwindcss/typography': ^0.5.9
+  '@total-typescript/ts-reset': ^0.4.2
   '@types/eslint': 8.37.0
   '@types/node': ^18.15.13
   '@typescript-eslint/eslint-plugin': 5.59.00
@@ -43,6 +44,7 @@ dependencies:
 
 devDependencies:
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.3.1
+  '@total-typescript/ts-reset': 0.4.2
   '@types/eslint': 8.37.0
   '@types/node': 18.15.13
   '@typescript-eslint/eslint-plugin': 5.59.0_wsbkzerfphvgr4lle7vmeh64yi
@@ -2195,6 +2197,10 @@ packages:
   /@tootallnate/once/1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
+    dev: true
+
+  /@total-typescript/ts-reset/0.4.2:
+    resolution: {integrity: sha512-vqd7ZUDSrXFVT1n8b2kc3LnklncDQFPvR58yUS1kEP23/nHPAO9l1lMjUfnPrXYYk4Hj54rrLKMW5ipwk7k09A==}
     dev: true
 
   /@ts-morph/common/0.11.1:

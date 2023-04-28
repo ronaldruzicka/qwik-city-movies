@@ -19,17 +19,11 @@ export default component$(() => {
   const { params, url } = useLocation();
   const movie = use_get_movie();
 
-  const is_videos = url.pathname.includes('/videos');
-  const is_photos = url.pathname.includes('/photos');
-  const is_overview = !(is_videos || is_photos);
-
   const tabs = [
     { href: `/movie/${params.id}/`, title: 'Overview' },
     { href: `/movie/${params.id}/videos/`, title: 'Videos' },
     { href: `/movie/${params.id}/photos/`, title: 'Photos' },
   ];
-
-  console.log('url.pathname', url.pathname);
 
   return (
     <>
