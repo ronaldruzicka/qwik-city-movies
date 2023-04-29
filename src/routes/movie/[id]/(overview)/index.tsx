@@ -1,22 +1,23 @@
 import { component$ } from '@builder.io/qwik';
 
 import { get_poster } from '~/api/image-service';
-import { format_currency } from '~/helpers/format_currency';
-import { format_date } from '~/helpers/format_date';
-import { format_language } from '~/helpers/format_language';
-import { format_list } from '~/helpers/format_list';
-import { get_runtime } from '~/helpers/get_runtime';
+import { format_currency } from '~/helpers/format-currency';
+import { format_date } from '~/helpers/format-date';
+import { format_language } from '~/helpers/format-language';
+import { format_list } from '~/helpers/format-list';
+import { get_runtime } from '~/helpers/get-runtime';
+import { use_locale } from '~/hooks/use-locale';
 import { use_get_movie } from '~/routes/movie/layout';
 
 export default component$(() => {
   const { value: movie } = use_get_movie();
+  const locale = use_locale();
 
-  const release_date = format_date(movie.release_date, 'long');
   const director = movie.credits?.crew?.find((person) => person.job === 'Director');
   const genres = movie.genres?.map(({ name }) => name).filter(Boolean);
-  const genres_list = format_list(genres);
+  const genres_list = format_list({ locale, value: genres });
   const production_companies = movie.production_companies?.map(({ name }) => name).filter(Boolean);
-  const production_companies_list = format_list(production_companies);
+  const production_companies_list = format_list({ locale, value: production_companies });
 
   return (
     <section class="mt-10">
@@ -31,7 +32,13 @@ export default component$(() => {
           <p class="leading-7 text-white">{movie.overview}</p>
           <div class="grid grid-cols-[max-content_1fr_max-content_1fr] gap-3 mt-5 text-sm">
             <strong>Released:</strong>
-            <div>{release_date}</div>
+            <div>
+              {format_date({
+                date: movie.release_date,
+                dateStyle: 'long',
+                locale,
+              })}
+            </div>
 
             <strong>Runtime:</strong>
             <div>{get_runtime(movie.runtime)}</div>
@@ -40,10 +47,10 @@ export default component$(() => {
             <div>{director?.name}</div>
 
             <strong>Budget:</strong>
-            <div>{format_currency(movie.budget)}</div>
+            <div>{format_currency({ locale, value: movie.budget })}</div>
 
             <strong>Revenue:</strong>
-            <div>{format_currency(movie.revenue)}</div>
+            <div>{format_currency({ locale, value: movie.revenue })}</div>
 
             <strong>Genre:</strong>
             <div>{genres_list}</div>

@@ -1,4 +1,4 @@
-import { get_rating } from '~/helpers/get_rating';
+import { get_rating } from '~/helpers/get-rating';
 
 type Props = {
   name: string;

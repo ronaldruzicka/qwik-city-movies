@@ -5,16 +5,19 @@ import { component$ } from '@builder.io/qwik';
 import { get_backdrop } from '~/api/image-service';
 import { Rating } from '~/components/rating';
 import { TextSubtle } from '~/components/text-subtle';
-import { format_date } from '~/helpers/format_date';
-import { get_runtime } from '~/helpers/get_runtime';
+import { format_date } from '~/helpers/format-date';
+import { get_runtime } from '~/helpers/get-runtime';
+import { use_locale } from '~/hooks/use-locale';
 
 type Props = {
   data: MovieDetails;
 };
 
 export const Hero = component$<Props>(({ data }) => {
+  const locale = use_locale();
+
   const image_width = 1280;
-  const release_date = format_date(data.release_date, 'short');
+  const release_date = format_date({ date: data.release_date, dateStyle: 'short', locale });
 
   return (
     <div class="relative">
