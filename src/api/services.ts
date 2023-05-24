@@ -1,24 +1,24 @@
 import type { Config, Movie, MovieDetails, PaginatedResponse, TvShow } from '~/api/types';
 
-import { tmdb_client } from '~/api/api-client';
+import { tmdb_fetch } from '~/api/api-client';
 
-export const get_config = async () => tmdb_client.get<Config>('configuration');
+export const get_config = async () => tmdb_fetch<Config>('configuration');
 
 export const get_now_playing_movie = async () => {
-  return tmdb_client.get<PaginatedResponse<Movie>>('movie/now_playing?page=1');
+  return tmdb_fetch<PaginatedResponse<Movie>>('movie/now_playing', { search: { page: '1' } });
 };
 
 export const get_trending_movies = async () => {
-  return tmdb_client.get<PaginatedResponse<Movie>>('/trending/movie/week?page=1');
+  return tmdb_fetch<PaginatedResponse<Movie>>('/trending/movie/week', { search: { page: '1' } });
 };
 
 export const get_trending_tv_shows = async () => {
-  return tmdb_client.get<PaginatedResponse<TvShow>>('/trending/tv/week?page=1');
+  return tmdb_fetch<PaginatedResponse<TvShow>>('/trending/tv/week', { search: { page: '1' } });
 };
 
 export const get_movie = async (id: number) => {
-  return tmdb_client.get<MovieDetails>(`/movie/${id}`, {
-    params: {
+  return tmdb_fetch<MovieDetails>(`/movie/${id}`, {
+    search: {
       append_to_response: 'videos,credits,images,release_dates',
       include_image_language: 'en',
     },

@@ -12,7 +12,7 @@ type RouteParams = {
 export const use_get_movie = routeLoader$(async ({ params }) => {
   const response = await get_movie((params as unknown as RouteParams).id);
 
-  return response.data;
+  return response;
 });
 
 export default component$(() => {

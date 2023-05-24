@@ -4,7 +4,7 @@ import type { Movie, MovieDetails } from '~/api/types';
 import { component$, useContextProvider } from '@builder.io/qwik';
 import { Link, routeLoader$ } from '@builder.io/qwik-city';
 
-import { tmdb_client } from '~/api/api-client';
+import { tmdb_fetch } from '~/api/api-client';
 import {
   get_config,
   get_now_playing_movie,
@@ -21,33 +21,33 @@ const get_random_number = (multiplier: number) => Math.floor(Math.random() * mul
 export const use_get_config = routeLoader$(async () => {
   const response = await get_config();
 
-  return response.data;
+  return response;
 });
 
 export const use_get_now_playing_movie = routeLoader$(async () => {
   const now_playing_response = await get_now_playing_movie();
 
-  const random_movie = now_playing_response.data.results
+  const random_movie = now_playing_response.results
     ?.filter(with_poster)
-    .at(get_random_number(now_playing_response.data.results.length));
+    .at(get_random_number(now_playing_response.results.length));
 
   const movie_details = random_movie?.id
-    ? await tmdb_client.get<MovieDetails>(`movie/${random_movie.id}`)
+    ? await tmdb_fetch<MovieDetails>(`movie/${random_movie.id}`)
     : null;
 
-  return movie_details?.data;
+  return movie_details;
 });
 
 export const use_get_trending_movies = routeLoader$(async () => {
   const response = await get_trending_movies();
 
-  return response.data;
+  return response;
 });
 
 export const use_get_trending_tv_shows = routeLoader$(async () => {
   const response = await get_trending_tv_shows();
 
-  return response.data;
+  return response;
 });
 
 export default component$(() => {
