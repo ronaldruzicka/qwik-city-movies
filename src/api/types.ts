@@ -9,6 +9,12 @@ export type Prettify<T> = {
 
 export type ElementType = keyof QwikIntrinsicElements;
 
+export type RequestTokenResponse = {
+  expires_at: string;
+  request_token: string;
+  success: boolean;
+};
+
 export type PaginatedResponse<TData> = {
   dates?: Dates;
   page?: number;

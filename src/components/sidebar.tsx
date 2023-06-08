@@ -30,6 +30,11 @@ export const Sidebar = component$(() => {
             <Search />
           </Link>
         </li>
+        <li>
+          <Link href="/login" class="btn btn-circle">
+            Sign in
+          </Link>
+        </li>
       </ul>
     </nav>
   );

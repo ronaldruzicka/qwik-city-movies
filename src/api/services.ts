@@ -3,11 +3,15 @@ import type {
   Movie,
   MovieDetails,
   PaginatedResponse,
+  RequestTokenResponse,
   TvShow,
   TvShowDetails,
 } from '~/api/types';
 
 import { tmdb_fetch } from '~/api/api-client';
+
+export const get_request_token = async () =>
+  tmdb_fetch<RequestTokenResponse>('authentication/token/new');
 
 export const get_config = async () => tmdb_fetch<Config>('configuration');
 
