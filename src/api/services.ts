@@ -1,4 +1,11 @@
-import type { Config, Movie, MovieDetails, PaginatedResponse, TvShow } from '~/api/types';
+import type {
+  Config,
+  Movie,
+  MovieDetails,
+  PaginatedResponse,
+  TvShow,
+  TvShowDetails,
+} from '~/api/types';
 
 import { tmdb_fetch } from '~/api/api-client';
 
@@ -20,6 +27,15 @@ export const get_movie = async (id: number) => {
   return tmdb_fetch<MovieDetails>(`/movie/${id}`, {
     search: {
       append_to_response: 'videos,credits,images,release_dates',
+      include_image_language: 'en',
+    },
+  });
+};
+
+export const get_tv_show = async (id: number) => {
+  return tmdb_fetch<TvShowDetails>(`/tv/${id}`, {
+    search: {
+      append_to_response: 'videos,credits,images,content_ratings',
       include_image_language: 'en',
     },
   });
