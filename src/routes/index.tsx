@@ -12,8 +12,8 @@ import {
   get_trending_tv_shows,
 } from '~/api/services';
 import { ConfigContext } from '~/context/config-context';
-import { Hero } from '~/features/hero/hero';
-import { TrendingCarousel } from '~/features/trending/trending_carousel';
+import { HeroMovie } from '~/features/hero/hero-movie';
+import { TrendingCarousel } from '~/features/trending/trending-carousel';
 
 const with_poster = (movie: Movie) => movie.backdrop_path !== null;
 const get_random_number = (multiplier: number) => Math.floor(Math.random() * multiplier);
@@ -62,7 +62,7 @@ export default component$(() => {
     <>
       {now_playing_movie.value && (
         <Link href={`movie/${now_playing_movie.value.id}`}>
-          <Hero data={now_playing_movie.value} />
+          <HeroMovie data={now_playing_movie.value} />
         </Link>
       )}
       {trending_movies.value.results && (

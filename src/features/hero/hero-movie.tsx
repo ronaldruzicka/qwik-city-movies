@@ -13,7 +13,7 @@ type Props = {
   data: MovieDetails;
 };
 
-export const Hero = component$<Props>(({ data }) => {
+export const HeroMovie = component$<Props>(({ data }) => {
   const locale = use_locale();
 
   const image_width = 1280;

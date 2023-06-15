@@ -3,7 +3,7 @@ import { Link, routeLoader$, useLocation } from '@builder.io/qwik-city';
 import clsx from 'clsx';
 
 import { get_movie } from '~/api/services';
-import { Hero } from '~/features/hero/hero';
+import { HeroMovie } from '~/features/hero/hero-movie';
 
 type RouteParams = {
   id: number;
@@ -28,7 +28,7 @@ export default component$(() => {
   return (
     <>
       <header>
-        <Hero data={movie.value} />
+        <HeroMovie data={movie.value} />
       </header>
       <div class="flex justify-center mt-7">
         <div class="tabs tab-lg">

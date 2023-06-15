@@ -18,3 +18,5 @@ export const get_poster = (options: { media: ProductionMedia; size: PosterSizes 
 
   return `${image_base}/w${size}${media.poster_path}`;
 };
+
+export const get_logo = (path: string) => `${image_base}/original/${path}`;
