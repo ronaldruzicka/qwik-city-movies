@@ -32,7 +32,7 @@ export const TrendingCarousel = component$<Props>(({ data, mediaType }) => {
           return (
             <Link href={`/${mediaType}/${media.id}`} key={media.id} class="carousel-item flex-col">
               <img
-                src={get_poster({ media, size: 342 })}
+                src={get_poster({ path: media.poster_path, size: 342 })}
                 height={556}
                 width={370}
                 alt={media_title}

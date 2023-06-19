@@ -31,7 +31,7 @@ export default component$(() => {
         <HeroMovie data={movie.value} />
       </header>
       <div class="flex justify-center mt-7">
-        <div class="tabs tab-lg">
+        <div class="tabs tab-lg mb-7">
           {tabs.map((tab) => {
             return (
               <Link

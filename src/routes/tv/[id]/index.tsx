@@ -39,7 +39,7 @@ export default component$(() => {
       <section class="mt-10">
         <div class="flex gap-x-10 justify-center max-w-6xl mx-auto">
           <picture class="flex-none">
-            <img src={get_poster({ media: tv_show, size: 342 })} alt={tv_show.name} />
+            <img src={get_poster({ path: tv_show.poster_path, size: 342 })} alt={tv_show.name} />
           </picture>
           <article class="flex flex-col justify-center">
             <header>

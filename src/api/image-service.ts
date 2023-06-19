@@ -13,10 +13,10 @@ export const get_backdrop = (options: { media: ProductionMedia; size: BackdropSi
 
 type PosterSizes = 92 | 154 | 185 | 342 | 500 | 780;
 
-export const get_poster = (options: { media: ProductionMedia; size: PosterSizes }) => {
-  const { media, size } = options;
+export const get_poster = (options: { path: string; size: PosterSizes }) => {
+  const { path, size } = options;
 
-  return `${image_base}/w${size}${media.poster_path}`;
+  return `${image_base}/w${size}${path}`;
 };
 
 export const get_logo = (path: string) => `${image_base}/original/${path}`;

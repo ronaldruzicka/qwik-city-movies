@@ -22,9 +22,11 @@ export default component$(() => {
   return (
     <section class="mt-10">
       <div class="flex gap-x-10 justify-center max-w-6xl mx-auto">
-        <picture class="flex-none">
-          <img src={get_poster({ media: movie, size: 342 })} alt={movie.title} />
-        </picture>
+        {movie.poster_path && (
+          <picture class="flex-none">
+            <img src={get_poster({ path: movie.poster_path, size: 342 })} alt={movie.title} />
+          </picture>
+        )}
         <article class="flex flex-col justify-center">
           <header>
             <h1 class="text-3xl mb-4">Storyline</h1>
