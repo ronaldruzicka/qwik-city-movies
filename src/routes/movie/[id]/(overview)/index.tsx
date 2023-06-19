@@ -7,7 +7,7 @@ import { format_language } from '~/helpers/format-language';
 import { format_list } from '~/helpers/format-list';
 import { get_runtime } from '~/helpers/get-runtime';
 import { use_locale } from '~/hooks/use-locale';
-import { use_get_movie } from '~/routes/movie/layout';
+import { use_get_movie } from '~/routes/movie/[id]/layout';
 
 export default component$(() => {
   const { value: movie } = use_get_movie();

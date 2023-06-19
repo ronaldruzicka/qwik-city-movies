@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 
 import { get_poster } from '~/api/image-service';
-import { use_get_movie } from '~/routes/movie/layout';
+import { use_get_movie } from '~/routes/movie/[id]/layout';
 
 export default component$(() => {
   const { value: movie } = use_get_movie();
