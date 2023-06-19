@@ -56,25 +56,27 @@ export default component$(() => {
       </Form>
 
       <section class="grid grid-cols-[repeat(auto-fill,_minmax(185px,_1fr))] gap-5">
-        {action.value?.map((result) => {
-          const title = 'title' in result && result.title;
-          const name = 'name' in result && result.name;
-          const result_title = title || name || '';
+        {Array.isArray(action?.value)
+          ? action.value.map((result) => {
+              const title = 'title' in result && result.title;
+              const name = 'name' in result && result.name;
+              const result_title = title || name || '';
 
-          return (
-            result.poster_path && (
-              <Link href={`/movie/${result.id}`} key={result.id} class="flex flex-col">
-                <img
-                  class="mb-2"
-                  alt={result_title}
-                  src={get_poster({ path: result.poster_path, size: 185 })}
-                  width={185}
-                />
-                <span>{result_title}</span>
-              </Link>
-            )
-          );
-        })}
+              return (
+                result.poster_path && (
+                  <Link href={`/movie/${result.id}`} key={result.id} class="flex flex-col">
+                    <img
+                      class="mb-2"
+                      alt={result_title}
+                      src={get_poster({ path: result.poster_path, size: 185 })}
+                      width={185}
+                    />
+                    <span>{result_title}</span>
+                  </Link>
+                )
+              );
+            })
+          : null}
       </section>
     </>
   );

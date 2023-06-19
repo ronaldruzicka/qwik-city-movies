@@ -30,15 +30,21 @@ export const TrendingCarousel = component$<Props>(({ data, mediaType }) => {
           const media_title = is_movie(media) ? media.title : media.name;
 
           return (
-            <Link href={`/${mediaType}/${media.id}`} key={media.id} class="carousel-item flex-col">
-              <img
-                src={get_poster({ path: media.poster_path, size: 342 })}
-                height={556}
-                width={370}
-                alt={media_title}
-              />
-              <h3 class="text-lg py-2">{media_title}</h3>
-            </Link>
+            media.poster_path && (
+              <Link
+                href={`/${mediaType}/${media.id}`}
+                key={media.id}
+                class="carousel-item flex-col"
+              >
+                <img
+                  src={get_poster({ path: media.poster_path, size: 342 })}
+                  height={556}
+                  width={370}
+                  alt={media_title}
+                />
+                <h3 class="text-lg py-2">{media_title}</h3>
+              </Link>
+            )
           );
         })}
       </div>
