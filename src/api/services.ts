@@ -3,7 +3,9 @@ import type {
   Movie,
   MovieDetails,
   PaginatedResponse,
+  ProductionMedia,
   RequestTokenResponse,
+  SearchCategory,
   TvShow,
   TvShowDetails,
 } from '~/api/types';
@@ -41,6 +43,14 @@ export const get_tv_show = async (id: number) => {
     search: {
       append_to_response: 'videos,credits,images,content_ratings',
       include_image_language: 'en',
+    },
+  });
+};
+
+export const search = (query: string, category: SearchCategory) => {
+  return tmdb_fetch<PaginatedResponse<ProductionMedia>>(`search/${category}`, {
+    search: {
+      query,
     },
   });
 };

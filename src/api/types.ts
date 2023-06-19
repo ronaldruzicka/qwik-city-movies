@@ -292,3 +292,5 @@ export type TvShowDetails = Prettify<
     vote_count: number;
   }
 >;
+
+export type SearchCategory = 'movie' | 'tv' | 'multi';
