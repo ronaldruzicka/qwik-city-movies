@@ -3,6 +3,7 @@ import { routeLoader$ } from '@builder.io/qwik-city';
 
 import { get_logo, get_poster } from '~/api/image-service';
 import { get_tv_show } from '~/api/services';
+import { Rating } from '~/components/rating';
 import { HeroTvShow } from '~/features/hero/hero-tv-show';
 import { format_date } from '~/helpers/format-date';
 import { format_language } from '~/helpers/format-language';
@@ -39,9 +40,19 @@ export default component$(() => {
       <section class="mt-10">
         <div class="flex gap-x-10 justify-center max-w-6xl mx-auto">
           {tv_show.poster_path && (
-            <picture class="flex-none">
-              <img src={get_poster({ path: tv_show.poster_path, size: 342 })} alt={tv_show.name} />
-            </picture>
+            <div class="flex flex-col flex-none">
+              <picture class="flex-none mb-3">
+                <img
+                  src={get_poster({ path: tv_show.poster_path, size: 342 })}
+                  alt={tv_show.name}
+                />
+              </picture>
+
+              <div class="flex items-center">
+                <span class="mr-3 text-sm">Rate:</span>
+                <Rating value={tv_show.vote_average} name={`rating-tv_show-${tv_show.id}`} />
+              </div>
+            </div>
           )}
           <article class="flex flex-col justify-center">
             <header>

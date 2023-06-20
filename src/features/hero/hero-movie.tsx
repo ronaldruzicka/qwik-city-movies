@@ -34,7 +34,7 @@ export const HeroMovie = component$<Props>(({ data }) => {
       <article class="absolute bottom-0 left-0 flex flex-col justify-end w-5/12 p-10 bg-gradient-to-r from-black/20">
         <h1 class="mb-3 text-5xl font-bold">{data.title}</h1>
         <div class="flex gap-x-2 items-center mb-5">
-          <Rating value={data.vote_average} name={`rating-${data.id}`} read_only />
+          <Rating value={data.vote_average} name={`rating-hero-${data.id}`} read_only />
           <TextSubtle>
             {data.vote_count} reviews, {release_date}, {get_runtime(data.runtime)}
           </TextSubtle>

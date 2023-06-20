@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 
 import { get_poster } from '~/api/image-service';
+import { Rating } from '~/components/rating';
 import { format_currency } from '~/helpers/format-currency';
 import { format_date } from '~/helpers/format-date';
 import { format_language } from '~/helpers/format-language';
@@ -23,9 +24,16 @@ export default component$(() => {
     <section class="mt-10">
       <div class="flex gap-x-10 justify-center max-w-6xl mx-auto">
         {movie.poster_path && (
-          <picture class="flex-none">
-            <img src={get_poster({ path: movie.poster_path, size: 342 })} alt={movie.title} />
-          </picture>
+          <div class="flex flex-col flex-none">
+            <picture class="flex-none mb-3">
+              <img src={get_poster({ path: movie.poster_path, size: 342 })} alt={movie.title} />
+            </picture>
+
+            <div class="flex items-center">
+              <span class="mr-3 text-sm">Rate:</span>
+              <Rating value={movie.vote_average} name={`rating-movie-${movie.id}`} />
+            </div>
+          </div>
         )}
         <article class="flex flex-col justify-center">
           <header>

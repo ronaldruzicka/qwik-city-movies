@@ -13,7 +13,7 @@ export const use_search = routeAction$(async (data) => {
 });
 
 export default component$(() => {
-  const action = use_search();
+  const search_action = use_search();
   const input_ref = useSignal<HTMLInputElement>();
   const category = useSignal<SearchCategory>('multi');
 
@@ -29,7 +29,7 @@ export default component$(() => {
   return (
     <>
       <div class="flex justify-center my-10">
-        <Form action={action} class="p-5">
+        <Form action={search_action} class="p-5">
           <div class="join">
             <input
               ref={input_ref}
@@ -57,8 +57,8 @@ export default component$(() => {
       </div>
 
       <section class="grid grid-cols-[repeat(auto-fill,_minmax(185px,_1fr))] gap-5 px-6">
-        {Array.isArray(action?.value)
-          ? action.value.map((result) => {
+        {Array.isArray(search_action?.value)
+          ? search_action.value.map((result) => {
               const title = 'title' in result && result.title;
               const name = 'name' in result && result.name;
               const result_title = title || name || '';
