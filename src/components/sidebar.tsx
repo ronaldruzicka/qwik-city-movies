@@ -21,7 +21,7 @@ export const Sidebar = component$(() => {
           </Link>
         </li>
         <li>
-          <Link href="/tv-show" class="btn btn-circle">
+          <Link href="/tv" class="btn btn-circle">
             <TV />
           </Link>
         </li>
@@ -30,11 +30,11 @@ export const Sidebar = component$(() => {
             <Search />
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href="/login" class="btn btn-circle">
             Sign in
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

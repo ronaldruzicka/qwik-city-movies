@@ -28,34 +28,35 @@ export default component$(() => {
 
   return (
     <>
-      <Form action={action} class="p-5">
-        <div class="join">
-          <input
-            ref={input_ref}
-            name="search"
-            type="search"
-            class="input input-bordered join-item"
-            placeholder="Search..."
-          />
-
-          <select
-            class="select select-bordered join-item items-center"
-            name="category"
-            bind:value={category}
-          >
-            <option value="multi">All</option>
-            <option value="movie">Movie</option>
-            <option value="tv">TV Show</option>
-          </select>
-          <div class="indicator">
-            <button class="btn join-item btn-primary" type="submit">
-              Search
-            </button>
+      <div class="flex justify-center my-10">
+        <Form action={action} class="p-5">
+          <div class="join">
+            <input
+              ref={input_ref}
+              name="search"
+              type="search"
+              class="input input-bordered join-item"
+              placeholder="Search..."
+            />
+            <select
+              class="select select-bordered join-item items-center"
+              name="category"
+              bind:value={category}
+            >
+              <option value="multi">All</option>
+              <option value="movie">Movie</option>
+              <option value="tv">TV Show</option>
+            </select>
+            <div class="indicator">
+              <button class="btn join-item btn-primary" type="submit">
+                Search
+              </button>
+            </div>
           </div>
-        </div>
-      </Form>
+        </Form>
+      </div>
 
-      <section class="grid grid-cols-[repeat(auto-fill,_minmax(185px,_1fr))] gap-5">
+      <section class="grid grid-cols-[repeat(auto-fill,_minmax(185px,_1fr))] gap-5 px-6">
         {Array.isArray(action?.value)
           ? action.value.map((result) => {
               const title = 'title' in result && result.title;
@@ -66,11 +67,12 @@ export default component$(() => {
                 result.poster_path && (
                   <Link href={`/movie/${result.id}`} key={result.id} class="flex flex-col">
                     <img
-                      class="mb-2"
+                      class="mb-2 hover:scale-105 hover:rotate-1 transition-transform duration-200 ease-in-out"
                       alt={result_title}
                       src={get_poster({ path: result.poster_path, size: 185 })}
                       width={185}
                     />
+
                     <span>{result_title}</span>
                   </Link>
                 )
